@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 987f5afe4a56af84fbc176f3f43a1128, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 2020618832528838054}
   - component: {fileID: 624440813}
   - component: {fileID: 624440814}
+  - component: {fileID: 1432598921633805771}
   m_Layer: 8
   m_Name: Defender
   m_TagString: Untagged
@@ -302,11 +303,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6534b5372ecbc9f45b13218c7ad63fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetObject: {fileID: 0}
   myRigidbody: {fileID: 624440814}
   isBounce: 0
   defenderColor:
     serializedVersion: 2
-    rgba: 29183
+    rgba: 4278219263
+  mySpriteRenderer: {fileID: 1887818178549068875}
+  defenderText: {fileID: 5138448193473676945}
+  defenderAnimator: {fileID: 1432598921633805771}
 --- !u!50 &624440814
 Rigidbody2D:
   serializedVersion: 4
@@ -328,3 +333,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &1432598921633805771
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8782858805262783003}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bee697c07b266184bb87edb59a745cbe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
