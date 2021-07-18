@@ -5,11 +5,14 @@ using TMPro;
 
 public class Defender : MonoBehaviour
 {
+    /*
     [SerializeField] float health = 10; //for debug
     float defenderDamage = 1;
     public GameObject targetObject;
     Raider targetScript;
+    Battler battler;
     float speed = 5;
+    public bool isIdle = false;
     [SerializeField] Rigidbody2D myRigidbody;
     [SerializeField] bool isBounce = false;
     [SerializeField] Color32 defenderColor;
@@ -20,6 +23,7 @@ public class Defender : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        battler = FindObjectOfType<Battler>();
         //myRigidbody = FindObjectOfType<Rigidbody2D>();
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         mySpriteRenderer.color = defenderColor;
@@ -36,6 +40,13 @@ public class Defender : MonoBehaviour
             // Move our position a step closer to the target.
             float step = speed * Time.deltaTime; // calculate distance to move
             transform.position = Vector3.MoveTowards(transform.position, targetObject.transform.position, step);
+        }
+        else if (!targetObject)
+        {
+            if (!isIdle)
+            {
+                battler.SetRaiderTarget(this);
+            }
         }
         // Check if the position of the cube and sphere are approximately equal.
     }
@@ -67,7 +78,10 @@ public class Defender : MonoBehaviour
 
     public void DamageDefender(float damage)
     {
-        targetScript.DamageRaider(defenderDamage);
+        if (targetScript)
+        {
+            targetScript.DamageRaider(defenderDamage);
+        }
         health = health - damage;
         if (health <= 0)
         {
@@ -79,4 +93,13 @@ public class Defender : MonoBehaviour
         //scales the health to the percentage participation
         health = health * scaling; 
     }
+    private void OnDestroy()
+    {
+        targetScript.SetRaiderToNotIdle();
+        battler.RemoveDefenderFromIdleList(this);
+    }
+    public void SetDefenderToNotIdle()
+    {
+        isIdle = false; 
+    }*/
 }

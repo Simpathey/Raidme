@@ -5,8 +5,10 @@ using TMPro;
 
 public class Raider : MonoBehaviour
 {
+    /*
     [SerializeField] float health = 10;
     float damage = 1;
+    public bool isIdle = false;
     GameObject targetObject;
     float speed = 5;
     [SerializeField] Rigidbody2D myRigidbody;
@@ -16,12 +18,15 @@ public class Raider : MonoBehaviour
     [SerializeField] SpriteRenderer mySpriteRenderer;
     [SerializeField] TextMeshPro raiderText;
     [SerializeField] Animator raiderAnimator;
+    Battler battler;
+
 
     // Start is called before the first frame update
     void Start()
     {
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         mySpriteRenderer.color = raiderColor;
+        battler = FindObjectOfType<Battler>();
         //myRigidbody = FindObjectOfType<Rigidbody2D>();
     }
     public void UpdateRaiderText(string name)
@@ -46,10 +51,16 @@ public class Raider : MonoBehaviour
                 myRigidbody.AddForce(bounce, ForceMode2D.Impulse);
                 StartCoroutine(ResetBounce());
             }
-
             // Move our position a step closer to the target.
             float step = speed * Time.deltaTime; // calculate distance to move
             transform.position = Vector3.MoveTowards(transform.position, targetObject.transform.position, step);
+        }
+        else if (!targetObject) //TO DO REMOVE
+        {
+            if (!isIdle)
+            {
+                battler.SetDefenderTarget(this);
+            }
         }
         // Check if the position of the cube and sphere are approximately equal.
     }
@@ -79,4 +90,13 @@ public class Raider : MonoBehaviour
     {
         health = health * healthScaling;
     }
+    private void OnDestroy()
+    {
+        targetScript.SetDefenderToNotIdle();
+        battler.RemoveRaiderFromIdleList(this);
+    }
+    public void SetRaiderToNotIdle()
+    {
+        isIdle = false;
+    }*/
 }

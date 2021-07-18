@@ -5184,16 +5184,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd112d09cc8ac4a41b6aa484a8778755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActiveDefenders: {fileID: 1904965106}
-  ActiveRaiders: {fileID: 857569746}
-  DefenderPrefab: {fileID: 8782858805262783003, guid: 340a3403c9440944a955b4bd92a7f6cd,
-    type: 3}
-  RaiderPrefab: {fileID: 6924125163326077885, guid: 574316d7e6e448841ad044d743e66491,
-    type: 3}
+  DefendersParent: {fileID: 1904965106}
+  RaidersParent: {fileID: 857569746}
   raiderPosition: {fileID: 1698699474}
   defenderPosition: {fileID: 607109886}
+  gameUnitPrefab: {fileID: 5150437774934332073, guid: 4f6510d535132dd44af667dc8cb22b40,
+    type: 3}
   raidersList: []
-  defenders: []
+  defendersList: []
 --- !u!4 &1018438630
 Transform:
   m_ObjectHideFlags: 0
