@@ -47,33 +47,33 @@ Once you press submit, the same page should show you two pieces of information. 
 -You can at this point minimize the game and it will run in the background of the stream
 
 ## Configguring Your Raidme Game
--*Twitch Channel Name* (Fill with your twitch channel name)
+**Twitch Channel Name:** Fill with your twitch channel name
 
--*Bot Name* (Fill with your twitch bot name)
+**Bot Name:** Fill with your twitch bot name
 
--*Client ID* (Fill with client ID you got from Registering your bot)
+**Client ID:** Fill with client ID you got from Registering your bot
 
--*Client Secret* (Fill with client secret you got from Registering your bot)
+**Client Secret:** Fill with client secret you got from Registering your bot
 
--*Bot Access Token* (Fill With access token from twitch token generator)
+**Bot Access Token:** Fill With access token from twitch token generator
 
--*Bot Refresh Token* (Fill With refresh token from twitch token generator)
+**Bot Refresh Token:** Fill With refresh token from twitch token generator
 
--*Text Color* (Push square button to expand pannel, sets the color of text in the game)
+**Text Color:** Push square button to expand pannel, sets the color of text in the game
 
--*Outline Color* (Push square button to expand pannel, sets the color of text outline in the game)
+**Outline Color:** Push square button to expand pannel, sets the color of text outline in the game
 
--*Defender File Path* (Put the exact file path of a png with transparent background and size 512x512 (should be drawn looking left if it is a character), I put the a free png you can use in the build folder. Please format the file path as such [D:/RaidMePictures/sheild.png] but don't include the square brakets. Notice the "slash" is a forward slash. Replace the path with where ever you put the png)
+**Defender File Path:** Put the exact file path of a png with transparent background and size 512x512 (should be drawn looking left if it is a character), I put the a free png you can use in the build folder. Please format the file path as such [D:/RaidMePictures/sheild.png] but don't include the square brakets. Notice the "slash" is a forward slash. Replace the path with where ever you put the png
 
--*Raider File Path* (Put the exact file path of a png with transparent background and size 512x512 (should be drawn looking right if it is a character), I put the a free png you can use in the build folder. Please format the file path as such [D:/RaidMePictures/sword.png] but don't include the square brakets. Notice the "slash" is a forward slash. Replace the path with where ever you put the png)
+**Raider File Path:** Put the exact file path of a png with transparent background and size 512x512 (should be drawn looking right if it is a character), I put the a free png you can use in the build folder. Please format the file path as such [D:/RaidMePictures/sword.png] but don't include the square brakets. Notice the "slash" is a forward slash. Replace the path with where ever you put the png
 
--*Raider Command* (the command raiders type to join the battle, defaults to raid, no need to include the ! that is added automatically)
+**Raider Command:** The command raiders type to join the battle, defaults to raid, no need to include the ! that is added automatically
 
--*Defender Command* (the command current chatters type to join the battle, defaults to defend, no need to include the ! that is added automatically)
+**Defender Command:** The command current chatters type to join the battle, defaults to defend, no need to include the ! that is added automatically
 
--*Community Name* (What ever you call you community, defaults to defenders)
+**Community Name:** What ever you call you community, defaults to defenders
 
--*Seconds Before Battle* (How much time is on the clock between the time you get raided and the time the battle starts, must be whole number)
+**Seconds Before Battle:** How much time is on the clock between the time you get raided and the time the battle starts, must be whole number
 
 ## Capturing in OBS
 -Create a new Game Capture
