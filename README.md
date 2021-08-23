@@ -17,8 +17,11 @@ Stream overlay game that triggers when you get raided
 
 ## What you need to run RaidMe
 -Your own bot
+
 -To register your bot (easier then it sounds)
+
 -To set up and allow access to your bot
+
 -OBS 
 
 ## Setting up your bot
@@ -63,9 +66,9 @@ Once you press submit, the same page should show you two pieces of information. 
 
 **Outline Color:** Push square button to expand pannel, sets the color of text outline in the game
 
-**Defender File Path:** Put the exact file path of a png with transparent background and size 512x512 (should be drawn looking left if it is a character), I put the a free png you can use in the build folder. Please format the file path as such [D:/RaidMePictures/sheild.png] but don't include the square brakets. Notice the "slash" is a forward slash. Replace the path with where ever you put the png
+**Defender File Path:** Put the exact file path of a png with transparent background and size 512x512 (should be drawn looking left if it is a character), I put the a free png you can use in the build folder. Please format the file path for example [C:/Users/Simpathey/Downloads/sheild.png] but don't include the square brakets. Notice the "slash" is a forward slash. Replace the path with where ever you put the png
 
-**Raider File Path:** Put the exact file path of a png with transparent background and size 512x512 (should be drawn looking right if it is a character), I put the a free png you can use in the build folder. Please format the file path as such [D:/RaidMePictures/sword.png] but don't include the square brakets. Notice the "slash" is a forward slash. Replace the path with where ever you put the png
+**Raider File Path:** Put the exact file path of a png with transparent background and size 512x512 (should be drawn looking right if it is a character), I put the a free png you can use in the build folder. Please format the file path for example [C:/Users/Simpathey/Downloads/sheild.png] but don't include the square brakets. Notice the "slash" is a forward slash. Replace the path with where ever you put the png.
 
 **Raider Command:** The command raiders type to join the battle, defaults to raid, no need to include the ! that is added automatically
 
