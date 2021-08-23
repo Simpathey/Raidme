@@ -14,6 +14,7 @@ public class GameUnitController : MonoBehaviour
     [SerializeField] TextMeshPro gameUnitText;
     [SerializeField] Rigidbody2D myRigidbody;
     [SerializeField] Animator myAnimator;
+    [SerializeField] SpriteRenderer mySpriteRenderer;
 
     [SerializeField] private bool seachingForOpponent = false; //to do unserialize 
     private bool bouncing = false;
@@ -59,7 +60,6 @@ public class GameUnitController : MonoBehaviour
                 if (Vector3.Distance(transform.position, target.transform.position) <= 0.001f)
                 {
                     bouncing = true;
-                    Debug.Log("boucing" +gameUnitText.text);
                     if (myUnitType == Enums.UnitType.raider)
                     {
                         //triggers dealing damage for both defender and attacker
@@ -68,8 +68,6 @@ public class GameUnitController : MonoBehaviour
                         //triggers the bounce for both defender and attacker
                         Vector2 bounce = new Vector2(Random.Range(-7, 7), Random.Range(-7, 7));
                         StartCoroutine(Bounce(bounce, 1));
-                        Debug.Log(target);
-                        Debug.Log(target.gameUnitText.text);
                         StartCoroutine(target.Bounce(bounce, -1));
                     }
                 }
@@ -92,6 +90,11 @@ public class GameUnitController : MonoBehaviour
     public void SetStateToIdle()
     {
         myState = Enums.UnitState.idle;
+    }
+
+    public void SetSprite(Sprite newSprite)
+    {
+        mySpriteRenderer.sprite = newSprite;
     }
 
     public void UpdateGameUnitText(string name)
@@ -123,6 +126,8 @@ public class GameUnitController : MonoBehaviour
 
     private void OnDestroy()
     {
+        battler.RemoveUnitFromList(this);
+        battler.CheckIfBattleOver();
         if (target)
         {
             target.seachingForOpponent = false;

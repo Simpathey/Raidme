@@ -5,5 +5,5 @@ public class Enums
 {
     public enum UnitState { idle, engaged, dead }
     public enum UnitType { defender, raider }
-    public enum GameState { raidTimer, raidFight }
+    public enum GameState { downtime, raidTimer, raidFight }
 }

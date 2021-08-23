@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 5150437774934332073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1}
   m_Children:
   - {fileID: 7746284406534120263}
   - {fileID: 273514172812673469}
@@ -135,6 +135,9 @@ MonoBehaviour:
   gameUnitText: {fileID: 7377472866154712787}
   myRigidbody: {fileID: 198131710969745329}
   myAnimator: {fileID: 8217631131731794632}
+  mySpriteRenderer: {fileID: 1340611469701220382}
+  seachingForOpponent: 0
+  target: {fileID: 0}
   myUnitType: 0
   myState: 0
 --- !u!50 &198131710969745329
