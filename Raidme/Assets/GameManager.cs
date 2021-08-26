@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     Queue<BattleParams> commandQueueRaid = new Queue<BattleParams>();
     public BattleParams currentBattleParams = new BattleParams();
     public string raiderNames;
+    public List<string> raiderNameList = new List<string>();
 
     // Start is called before the first frame update
     void Start()
@@ -33,11 +34,13 @@ public class GameManager : MonoBehaviour
 
     public void RaidReceived(OnRaidNotificationArgs e)
     {
+        string currentRaiderName = e.RaidNotificaiton.DisplayName;
         //start the timer if no raid is in progress, set raiding streamer name 
-        if (gameState == Enums.GameState.downtime)
+        if (gameState == Enums.GameState.downtime && !raiderNameList.Contains(currentRaiderName))
         {
             startingScene.gameObject.SetActive(true);
-            UpdateRaiderNames(e.RaidNotificaiton.DisplayName);
+            UpdateRaiderNames(currentRaiderName);
+            raiderNameList.Add(currentRaiderName);
             startingScene.SetRaiderName(raiderNames);
             gameState = Enums.GameState.raidTimer;
             startingScene.AddTime(playerPrefs.GetTimeToAdd());
@@ -45,10 +48,11 @@ public class GameManager : MonoBehaviour
             StartBattleParams(e);
         }
         //add time to clock if timer is ongoing, add new streamer name to list
-        else if (gameState == Enums.GameState.raidTimer)
-        {
+        else if (gameState == Enums.GameState.raidTimer && !raiderNameList.Contains(currentRaiderName))
+        { 
             startingScene.AddTime(playerPrefs.GetTimeToAdd());
             UpdateRaiderNames(e.RaidNotificaiton.DisplayName);
+            raiderNameList.Add(currentRaiderName);
             startingScene.SetRaiderName(raiderNames);
         }
         //queue the raid to happen after the fight is over
@@ -113,6 +117,7 @@ public class GameManager : MonoBehaviour
     private void ResetRaiderNames()
     {
         raiderNames = "";
+        raiderNameList.Clear();
     }
 
     public void UpdateRaiderNames(string raiderName)
