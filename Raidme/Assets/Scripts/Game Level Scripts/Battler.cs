@@ -33,7 +33,7 @@ public class Battler : MonoBehaviour
 
     //Stored Sprites for Defender and Raider
     [SerializeField] Sprite defenderSprite; //serialized for debug only
-    Sprite raiderSprite;
+    [SerializeField] Sprite raiderSprite;
 
     bool battleOver;
 
@@ -48,6 +48,8 @@ public class Battler : MonoBehaviour
     {
         try
         {
+            //string[] filePath = Directory.GetFiles(Application.dataPath + "/DefenderSprite/");
+            //defenderSprite = LoadPNG(filePath[0]);
             defenderSprite = LoadPNG(playerPrefsManager.GetDefenderFilePath());
         }
         catch (Exception)
@@ -59,6 +61,8 @@ public class Battler : MonoBehaviour
     {
         try
         {
+            //string[] filePath = Directory.GetFiles(Application.dataPath + "/RaiderSprite/*.png");
+            //raiderSprite = LoadPNG(filePath[0]);
             raiderSprite = LoadPNG(playerPrefsManager.GetRaiderFilePath());
         }
         catch (Exception)
@@ -99,7 +103,7 @@ public class Battler : MonoBehaviour
         }
         for (int i = 0; i < battleParams.raiderUserNames.Count; i++)
         {
-            if (i > battleParams.totalRaiderCount)
+            if (i > battleParams.totalRaiderCount-1)
             {
                 raiderPowerScaling = 0.1f;
             }

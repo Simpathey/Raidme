@@ -45,6 +45,10 @@ public class PlayerPrefsManager : MonoBehaviour
         {
             PlayerPrefs.SetString("OutlineColor", "#000000ff");
         }
+        if (!PlayerPrefs.HasKey("RaidLimit"))
+        {
+            PlayerPrefs.SetInt("RaidLimit", 0);
+        }
     }
 
     //creating methods so that we can set player prefs 
@@ -163,6 +167,19 @@ public class PlayerPrefsManager : MonoBehaviour
     {
         PlayerPrefs.SetString("OutlineColor", colorHex);
     }
+    public void SetRaiderLimit(TMPro.TMP_InputField inputString)
+    {
+        try
+        {
+            int raiderLimit = int.Parse(inputString.text);
+            PlayerPrefs.SetInt("RaiderLimit", raiderLimit);
+        }
+        catch (System.Exception)
+        {
+            //lol lolo lol olol lolo lo ldont judge me =^.^=
+        }
+    }
+
     public string GetChannelName()
     {
         if (PlayerPrefs.HasKey("ChannelName"))
@@ -250,5 +267,9 @@ public class PlayerPrefsManager : MonoBehaviour
     public string GetOutlineColor()
     {
         return PlayerPrefs.GetString("OutlineColor");
+    }
+    public int GetRaiderLimit()
+    {
+        return PlayerPrefs.GetInt("RaidLimit");
     }
 } 
