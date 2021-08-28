@@ -60,12 +60,14 @@ Once you press submit, the same page should show you two pieces of information. 
 - **Bot Refresh Token:** Fill With refresh token from twitch token generator
 - **Text Color:** Push square button to expand panel, sets the color of text in the game
 - **Outline Color:** Push square button to expand panel, sets the color of text outline in the game
-- **Defender File Path:** Put the exact file path of a png with transparent background and size 512x512 (should be drawn looking left if it is a character), I put the a free png you can use in the build folder. Please format the file path for example [C:/Users/Simpathey/Downloads/sheild.png] but don't include the square brackets. Notice the "slash" is a forward slash. Replace the path with where ever you put the png
-- **Raider File Path:** Put the exact file path of a png with transparent background and size 512x512 (should be drawn looking right if it is a character), I put the a free png you can use in the build folder. Please format the file path for example [C:/Users/Simpathey/Downloads/sheild.png] but don't include the square brackets. Notice the "slash" is a forward slash. Replace the path with where ever you put the png.
+- **Raider Limit:** Enter an integer to set a limit to how many people it takes raiding you to trigger the game. Must be a whole number 
 - **Raider Command:** The command raiders type to join the battle, defaults to raid, no need to include the ! that is added automatically
 - **Defender Command:** The command current chatters type to join the battle, defaults to defend, no need to include the ! that is added automatically
 - **Community Name:** What ever you call you community, defaults to defenders
 - **Seconds Before Battle:** How much time is on the clock between the time you get raided and the time the battle starts, must be whole number
+
+- **Defender File Path:** To change the default defender png replace the png in the folder >Raidme_Data/StreamingAssets/DefenderSprite | Size 512x512 png with transparent background
+- **Raider File Path:** To change the default raider png replace the png in the folder >Raidme_Data/StreamingAssets/RaiderSprite | Size 512x512 png with transparent background
 
 ## Capturing in OBS
 
