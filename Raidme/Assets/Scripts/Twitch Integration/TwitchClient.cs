@@ -14,7 +14,6 @@ public class TwitchClient : MonoBehaviour
     public CommandHandler commandHandler;
     public GameManager gameManager;
     // Start is called before the first frame update
-
     void Start()
     {
         ConnectClient();
@@ -25,7 +24,7 @@ public class TwitchClient : MonoBehaviour
         Debug.Log("client is attempting to connect");
         Application.runInBackground = true;
 
-        ConnectionCredentials creds = new ConnectionCredentials(playerPrefsManager.GetBotName(), playerPrefsManager.GetBotAccessToken()); 
+        ConnectionCredentials creds = new ConnectionCredentials(playerPrefsManager.GetBotName(), playerPrefsManager.GetBotAccessToken()); //BOT NAME
         client = new Client();
         client.Initialize(creds, playerPrefsManager.GetChannelName());
 
@@ -60,5 +59,5 @@ public class TwitchClient : MonoBehaviour
     {
         commandHandler.FilterCommand(e);
     }
-    
+
 }

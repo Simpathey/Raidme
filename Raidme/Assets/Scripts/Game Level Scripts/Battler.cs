@@ -48,9 +48,9 @@ public class Battler : MonoBehaviour
     {
         try
         {
-            string[] filePath = Directory.GetFiles(Application.streamingAssetsPath + "/DefenderSprite/");
-            defenderSprite = LoadPNG(filePath[0]);
-            //defenderSprite = LoadPNG(playerPrefsManager.GetDefenderFilePath());
+            //string[] filePath = Directory.GetFiles(Application.dataPath + "/DefenderSprite/");
+            //defenderSprite = LoadPNG(filePath[0]);
+            defenderSprite = LoadPNG(playerPrefsManager.GetDefenderFilePath());
         }
         catch (Exception)
         {
@@ -61,9 +61,9 @@ public class Battler : MonoBehaviour
     {
         try
         {
-            string[] filePath = Directory.GetFiles(Application.streamingAssetsPath + "/RaiderSprite/");
-            raiderSprite = LoadPNG(filePath[0]);
-           //raiderSprite = LoadPNG(playerPrefsManager.GetRaiderFilePath());
+            //string[] filePath = Directory.GetFiles(Application.dataPath + "/RaiderSprite/*.png");
+            //raiderSprite = LoadPNG(filePath[0]);
+            raiderSprite = LoadPNG(playerPrefsManager.GetRaiderFilePath());
         }
         catch (Exception)
         {
@@ -238,17 +238,6 @@ public class Battler : MonoBehaviour
         return NewSprite;
         
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A)) // THIS IS FAKE I WILL DELETE LATER LOLO LOLO LOOL LOOOOOOOOOL CATJAM
-        {
-            BattleParams fakeRaid = new BattleParams();
-            fakeRaid.defenderUserNames = new List<string> {"reallydecent","jashmead","tap_ghoul","aietes__","rossTB", "tr0ydf" };
-            fakeRaid.raiderUserNames = new List<string> { "RyanKHawkins", "Leo_churrasquerio","Moosedoesstuff","getfisted","cyberangel67" };
-            fakeRaid.totalDefenderCount = 7;
-            fakeRaid.totalRaiderCount = 9;
-            StartBattle(fakeRaid);
-        }
-    }
+    
 
 }
