@@ -172,7 +172,7 @@ public class PlayerPrefsManager : MonoBehaviour
         try
         {
             int raiderLimit = int.Parse(inputString.text);
-            PlayerPrefs.SetInt("RaiderLimit", raiderLimit);
+            PlayerPrefs.SetInt("RaidLimit", raiderLimit);
         }
         catch (System.Exception)
         {

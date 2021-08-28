@@ -21,8 +21,8 @@ public class StreamerConfigCanvas : MonoBehaviour
     [SerializeField] TMP_InputField timeToAdd;
     [SerializeField] TMP_InputField channelName;
     [SerializeField] TMP_InputField botName;
+    [SerializeField] TMP_InputField raidLimit;
 
-    [SerializeField] TextMeshPro Kofi;
 
     private void Start() 
     {
@@ -39,6 +39,7 @@ public class StreamerConfigCanvas : MonoBehaviour
         timeToAdd.text = playerPrefs.GetTimeToAdd().ToString();
         channelName.text = playerPrefs.GetChannelName();
         botName.text = playerPrefs.GetBotName();
+        raidLimit.text = playerPrefs.GetRaiderLimit().ToString();
     }
 
     public void Link()
