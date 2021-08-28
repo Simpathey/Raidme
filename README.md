@@ -65,9 +65,8 @@ Once you press submit, the same page should show you two pieces of information. 
 - **Defender Command:** The command current chatters type to join the battle, defaults to defend, no need to include the ! that is added automatically
 - **Community Name:** What ever you call you community, defaults to defenders
 - **Seconds Before Battle:** How much time is on the clock between the time you get raided and the time the battle starts, must be whole number
-
-- **Defender File Path:** To change the default defender png replace the png in the folder >Raidme_Data/StreamingAssets/DefenderSprite | Size 512x512 png with transparent background
-- **Raider File Path:** To change the default raider png replace the png in the folder >Raidme_Data/StreamingAssets/RaiderSprite | Size 512x512 png with transparent background
+- **Defender Sprite:** To change the default defender png replace the png in the folder >Raidme_Data/StreamingAssets/DefenderSprite | Size 512x512 png with transparent background
+- **Raider Sprite:** To change the default raider png replace the png in the folder >Raidme_Data/StreamingAssets/RaiderSprite | Size 512x512 png with transparent background
 
 ## Capturing in OBS
 
