@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public void RaidReceived(OnRaidNotificationArgs e)
     {
+
         string currentRaiderName = e.RaidNotificaiton.DisplayName;
         //start the timer if no raid is in progress, set raiding streamer name 
         if (gameState == Enums.GameState.downtime && !raiderNameList.Contains(currentRaiderName))
@@ -95,7 +96,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(currentBattleParams.raiderUserNames);
     }
 
-    public void StartBattle()
+    public void TimerHitZero()
     {
         raidStartingScene.SetActive(false);
         battler.StartBattle(currentBattleParams);

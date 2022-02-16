@@ -35,7 +35,7 @@ public class Timer : MonoBehaviour
                 //Time ran out do the thing!
                 timeRemaining = 0;
                 timerIsRunning = false;
-                gameManager.StartBattle();
+                gameManager.TimerHitZero();
                 timeRemaining = 1;
             }
             DisplayTime(timeRemaining);

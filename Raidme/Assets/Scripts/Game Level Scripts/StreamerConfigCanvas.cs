@@ -21,17 +21,23 @@ public class StreamerConfigCanvas : MonoBehaviour
     [SerializeField] TMP_InputField timeToAdd;
     [SerializeField] TMP_InputField channelName;
     [SerializeField] TMP_InputField botName;
+    [SerializeField] TMP_InputField raidLimit;
 
     [SerializeField] TextMeshPro Kofi;
 
     private void Start() 
     {
+        //Twitch Connection
         clientID.text = playerPrefs.GetClientID();
         clientSecret.text = playerPrefs.GetClientSecret();
         botAccessToken.text = playerPrefs.GetBotAccessToken();
         botRefreshToken.text = playerPrefs.GetBotRefreshToken();
+
+        //Custom Sprites
         defenderFilePath.text = playerPrefs.GetDefenderFilePath();
         raiderFilePath.text = playerPrefs.GetRaiderFilePath();
+
+        //Custom Configuration
         raidersIncomingmsg.text = playerPrefs.GetRaiderIncomingMsg();
         raidersCommand.text = playerPrefs.GetRaiderCommand();
         defendersCommand.text = playerPrefs.GetDefenderCommand();
@@ -39,6 +45,7 @@ public class StreamerConfigCanvas : MonoBehaviour
         timeToAdd.text = playerPrefs.GetTimeToAdd().ToString();
         channelName.text = playerPrefs.GetChannelName();
         botName.text = playerPrefs.GetBotName();
+        raidLimit.text = playerPrefs.GetRaiderLimit().ToString();
     }
 
     public void Link()

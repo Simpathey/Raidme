@@ -45,9 +45,9 @@ public class PlayerPrefsManager : MonoBehaviour
         {
             PlayerPrefs.SetString("OutlineColor", "#000000ff");
         }
-        if (!PlayerPrefs.HasKey("RaidLimit"))
+        if (!PlayerPrefs.HasKey("RaiderLimit"))
         {
-            PlayerPrefs.SetInt("RaidLimit", 0);
+            PlayerPrefs.SetInt("RaiderLimit", 0);
         }
     }
 
@@ -270,6 +270,6 @@ public class PlayerPrefsManager : MonoBehaviour
     }
     public int GetRaiderLimit()
     {
-        return PlayerPrefs.GetInt("RaidLimit");
+        return PlayerPrefs.GetInt("RaiderLimit");
     }
 } 

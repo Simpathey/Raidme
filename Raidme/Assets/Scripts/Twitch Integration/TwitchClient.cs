@@ -38,7 +38,7 @@ public class TwitchClient : MonoBehaviour
 
     private void Raid(object sender, OnRaidNotificationArgs e)
     {
-        if (int.Parse(e.RaidNotificaiton.MsgParamViewerCount) > playerPrefsManager.GetRaiderLimit())
+        if (int.Parse(e.RaidNotificaiton.MsgParamViewerCount) >= playerPrefsManager.GetRaiderLimit())
         { 
             FindObjectOfType<TwitchAPI>().OnRaidReceived();
             gameManager.RaidReceived(e);
