@@ -11,6 +11,8 @@ public class Battler : MonoBehaviour
     [SerializeField] PlayerPrefsManager playerPrefsManager;
     [SerializeField] GameManager gameManager;
     [SerializeField] RaidEndingScene raidEndingScene;
+    [SerializeField] Sprite defaultDefenderSprite;
+    [SerializeField] Sprite defaultRaiderSprite;
 
     //Defenders and Raiders will spawn as children of these game objects
     [SerializeField] GameObject DefendersParent;
@@ -46,24 +48,24 @@ public class Battler : MonoBehaviour
 
     public void LoadDefenderSprites()
     {
+        defenderSprite = defaultDefenderSprite;
         try
         {
-            //string[] filePath = Directory.GetFiles(Application.dataPath + "/DefenderSprite/");
-            //defenderSprite = LoadPNG(filePath[0]);
-            defenderSprite = LoadPNG(playerPrefsManager.GetDefenderFilePath());
+            string[] filePath = Directory.GetFiles(Application.streamingAssetsPath + "/DefenderSprite/");
+            defenderSprite = LoadPNG(filePath[0]);
         }
         catch (Exception)
         {
-            //if exception give user feedback that they need to enter a valid defender file path
+            //if exception give user feedback that they need to put a valid png in here!
         }
     }
     public void LoadRaiderSprites()
     {
+        raiderSprite = defaultRaiderSprite;
         try
         {
-            //string[] filePath = Directory.GetFiles(Application.dataPath + "/RaiderSprite/*.png");
-            //raiderSprite = LoadPNG(filePath[0]);
-            raiderSprite = LoadPNG(playerPrefsManager.GetRaiderFilePath());
+            string[] filePath = Directory.GetFiles(Application.streamingAssetsPath + "/RaiderSprite/");
+            raiderSprite = LoadPNG(filePath[0]);
         }
         catch (Exception)
         {
@@ -234,10 +236,20 @@ public class Battler : MonoBehaviour
         SpriteTexture = new Texture2D(2, 2);
         SpriteTexture.LoadImage(fileData); 
         Sprite NewSprite = Sprite.Create(SpriteTexture,
-            new Rect(0, 0, SpriteTexture.width, SpriteTexture.height), new Vector2(0.5f, 0.5f), 2000, 0, SpriteMeshType.Tight);
+        new Rect(0, 0, SpriteTexture.width, SpriteTexture.height), new Vector2(0.5f, 0.5f), 2000, 0, SpriteMeshType.Tight);
         return NewSprite;
-        
     }
-    
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A)) // THIS IS FAKE I WILL DELETE LATER LOLO LOLO LOOL LOOOOOOOOOL CATJAM
+        {
+            BattleParams fakeRaid = new BattleParams();
+            fakeRaid.defenderUserNames = new List<string> { "reallydecent", "jashmead", "tap_ghoul", "aietes__", "rossTB", "tr0ydf" };
+            fakeRaid.raiderUserNames = new List<string> { "RyanKHawkins", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67" };
+            fakeRaid.totalDefenderCount = 7;
+            fakeRaid.totalRaiderCount = 9;
+            StartBattle(fakeRaid);
+        }
+    }
 }

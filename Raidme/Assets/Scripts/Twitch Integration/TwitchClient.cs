@@ -33,7 +33,14 @@ public class TwitchClient : MonoBehaviour
         client.OnRaidNotification += Raid;
         client.OnConnected += ClientConnected;
 
-        client.Connect();
+        try
+        {
+            client.Connect();
+        }
+        catch (Exception)
+        {
+            //Hey your credentials are wrong
+        }
     }
 
     private void Raid(object sender, OnRaidNotificationArgs e)
@@ -53,6 +60,7 @@ public class TwitchClient : MonoBehaviour
         Debug.Log(e.AutoJoinChannel);
         Debug.Log(client.JoinedChannels.Count);
         twitchAPI.APIConnection();
+        client.SendMessage(client.JoinedChannels[0],"Raid Me Connected to Chat :D");
     }
 
     private void CommandMessageReceived(object sender, OnChatCommandReceivedArgs e)

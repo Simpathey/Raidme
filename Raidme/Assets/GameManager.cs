@@ -134,4 +134,6 @@ public class GameManager : MonoBehaviour
             streamerConfigCanvas.SetActive(configCanvasToggle);
         }
     }
+
+
 }
