@@ -5,6 +5,7 @@ using TwitchLib.Unity;
 using TwitchLib.Api.Models.Undocumented.Chatters;
 using System;
 using TwitchLib.Api.Models.Undocumented.ChatProperties;
+using TwitchLib.Api.Models;
 
 public class TwitchAPI : MonoBehaviour
 {
@@ -31,7 +32,14 @@ public class TwitchAPI : MonoBehaviour
         api = new Api();
         api.Settings.AccessToken = playerPrefs.GetBotAccessToken();
         api.Settings.ClientId = playerPrefs.GetClientID();
+        //api.Invoke(api.Settings.CheckCredentialsAsync(), APIFailCallback);
         StartCoroutine(CheckViewerCountCoroutine());
+    }
+
+    private void APIFailCallback(CredentialCheckResponseModel obj)
+    {
+        Debug.LogWarning("API connection failure!");
+        Debug.Log(obj.ResultMessage);
     }
 
     public void OnRaidReceived()
@@ -65,7 +73,7 @@ public class TwitchAPI : MonoBehaviour
         while (true)
         {
             if (twitchClient.client.JoinedChannels != null && countViewers) { InitiateAPICount(); }
-            yield return new WaitForSeconds(60);
+            yield return new WaitForSeconds(10); //to do change back to 60
         }
     }
 

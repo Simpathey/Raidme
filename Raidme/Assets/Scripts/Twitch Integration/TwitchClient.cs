@@ -13,9 +13,11 @@ public class TwitchClient : MonoBehaviour
     public PlayerPrefsManager playerPrefsManager;
     public CommandHandler commandHandler;
     public GameManager gameManager;
+    public UserFeedback userFeedback;
     // Start is called before the first frame update
     void Start()
     {
+        //I was here when Simpa 9 slice'd
         ConnectClient();
     }
 
@@ -26,21 +28,23 @@ public class TwitchClient : MonoBehaviour
 
         ConnectionCredentials creds = new ConnectionCredentials(playerPrefsManager.GetBotName(), playerPrefsManager.GetBotAccessToken()); //BOT NAME
         client = new Client();
-        client.Initialize(creds, playerPrefsManager.GetChannelName());
+
+        client.Initialize(creds, playerPrefsManager.GetChannelName());  //this is where we will fail
 
         //subscribe to events
         client.OnChatCommandReceived += CommandMessageReceived;
         client.OnRaidNotification += Raid;
         client.OnConnected += ClientConnected;
+        client.OnConnectionError += ClientConnectionError;
 
-        try
-        {
-            client.Connect();
-        }
-        catch (Exception)
-        {
-            //Hey your credentials are wrong
-        }
+        client.Connect();
+        if (!client.IsConnected) { userFeedback.ClientFailed(); }
+    }
+
+    private void ClientConnectionError(object sender, OnConnectionErrorArgs e)
+    {
+        Debug.Log("Failed to connect");
+        Debug.Log(e.Error);
     }
 
     private void Raid(object sender, OnRaidNotificationArgs e)
@@ -55,6 +59,7 @@ public class TwitchClient : MonoBehaviour
 
     private void ClientConnected(object sender, OnConnectedArgs e)
     {
+        userFeedback.ClientSuccess();
         Debug.Log("CLIENT CONNECTED");
         Debug.Log(e.BotUsername);
         Debug.Log(e.AutoJoinChannel);
