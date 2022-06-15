@@ -79,33 +79,38 @@ public class Battler : MonoBehaviour
         battleOver = false;
         //calculates the participation rate of each side, clamps value between 0.1 and 1
         float participatingDefenders = battleParams.defenderUserNames.Count;
-        defenderPowerScaling = Mathf.Clamp(participatingDefenders / battleParams.totalDefenderCount, 0.1f,1f);
+        defenderPowerScaling = Mathf.Clamp(participatingDefenders / battleParams.totalDefenderCount, 0.1f, 1f);
         float participatingRaiders = battleParams.raiderUserNames.Count;
-        raiderPowerScaling = Mathf.Clamp(participatingRaiders / battleParams.totalRaiderCount, 0.1f,1f);
+        raiderPowerScaling = Mathf.Clamp(participatingRaiders / battleParams.totalRaiderCount, 0.1f, 1f);
 
-        Debug.Log("defenders count "+participatingDefenders);
-        Debug.Log("defender power "+defenderPowerScaling);
+        Debug.Log("defenders count " + participatingDefenders);
+        Debug.Log("defender power " + defenderPowerScaling);
         Debug.Log("raiders count " + participatingRaiders);
         Debug.Log("raider power " + raiderPowerScaling);
 
-        for (int i = 0; i < participatingDefenders; i++)
+        StartCoroutine(StartBattleSpawn(battleParams, participatingDefenders));
+    }
+
+    IEnumerator StartBattleSpawn(BattleParams battleParams, float participatingDefenders)
+    {
+        yield return SpawnDefenders(battleParams, participatingDefenders);
+        yield return SpawnAttackers(battleParams);
+        foreach (var raider in raidersList)
         {
-            //creates Defender Game Unit
-            var tempDefender = Instantiate(gameUnitPrefab);
-            tempDefender.transform.parent = DefendersParent.transform;
-            GameUnitController tempDefenderScript = tempDefender.GetComponent<GameUnitController>();
-            tempDefenderScript.UpdateGameUnitText(battleParams.defenderUserNames[i]);
-            tempDefenderScript.ScaleGameUnitHealth(defenderPowerScaling);
-            tempDefenderScript.SetSprite(defenderSprite);
-            tempDefender.transform.position = new Vector3(defenderPosition.position.x, UnityEngine.Random.Range(-5, 5), 0);
-            tempDefenderScript.myUnitType = Enums.UnitType.defender;
-            tempDefenderScript.transform.localScale *= Mathf.Lerp(0.45f, 1, defenderPowerScaling);
-            //Adds to list for easy access 
-            defendersList.Add(tempDefenderScript);
+            raider.start = true;
         }
+        foreach (var defender in defendersList)
+        {
+            defender.start = true;
+        }
+        CheckIfBattleOver();
+    }
+
+    IEnumerator SpawnAttackers(BattleParams battleParams)
+    {
         for (int i = 0; i < battleParams.raiderUserNames.Count; i++)
         {
-            if (i > battleParams.totalRaiderCount-1)
+            if (i > battleParams.totalRaiderCount - 1)
             {
                 raiderPowerScaling = 0.1f;
             }
@@ -116,13 +121,58 @@ public class Battler : MonoBehaviour
             tempRaiderScript.UpdateGameUnitText(battleParams.raiderUserNames[i]);
             tempRaiderScript.ScaleGameUnitHealth(raiderPowerScaling);
             tempRaiderScript.SetSprite(raiderSprite);
-            tempRaider.transform.position = new Vector3(raiderPosition.position.x, UnityEngine.Random.Range(-5, 5), 0);
+            tempRaider.transform.position = new Vector3(-1.5f, 0, 0);
             tempRaiderScript.myUnitType = Enums.UnitType.raider;
-            tempRaiderScript.transform.localScale *= Mathf.Lerp(0.45f,1,raiderPowerScaling);
+            tempRaiderScript.transform.localScale = new Vector3(2,2,2);
             //Adds to list for easy access 
             raidersList.Add(tempRaiderScript);
+            float duration = 0.5f;
+            float time = 0;
+            Vector3 targetPos = new Vector3(raiderPosition.position.x, UnityEngine.Random.Range(-5, 5), 0);
+            float targetSizeParam = Mathf.Lerp(0.45f, 1, raiderPowerScaling);
+            Vector3 targetSize = new Vector3(targetSizeParam, targetSizeParam, targetSizeParam);
+            yield return new WaitForSeconds(0.5f);
+            while (time<duration)
+            {
+                tempRaider.transform.position = Vector3.Lerp(tempRaider.transform.position, targetPos, time / duration);
+                tempRaiderScript.transform.localScale = Vector3.Lerp(tempRaiderScript.transform.localScale, targetSize, time / duration);
+                time += Time.deltaTime;
+                yield return null;
+            }
+          
         }
-        CheckIfBattleOver();
+    }
+
+    IEnumerator SpawnDefenders(BattleParams battleParams, float participatingDefenders)
+    {
+        for (int i = 0; i < participatingDefenders; i++)
+        {
+            //creates Defender Game Unit
+            var tempDefender = Instantiate(gameUnitPrefab);
+            tempDefender.transform.parent = DefendersParent.transform;
+            GameUnitController tempDefenderScript = tempDefender.GetComponent<GameUnitController>();
+            tempDefenderScript.UpdateGameUnitText(battleParams.defenderUserNames[i]);
+            tempDefenderScript.ScaleGameUnitHealth(defenderPowerScaling);
+            tempDefenderScript.SetSprite(defenderSprite);
+            tempDefender.transform.position = new Vector3(1.5f, 0, 0);
+            tempDefenderScript.myUnitType = Enums.UnitType.defender;
+            tempDefenderScript.transform.localScale *= Mathf.Lerp(0.45f, 1, defenderPowerScaling);
+            //Adds to list for easy access 
+            defendersList.Add(tempDefenderScript);
+            float time = 0;
+            float duration = 0.5f;
+            Vector3 targetPos = new Vector3(defenderPosition.position.x, UnityEngine.Random.Range(-5, 5), 0);
+            float targetSizeParam = Mathf.Lerp(0.45f, 1, defenderPowerScaling);
+            Vector3 targetSize = new Vector3(targetSizeParam, targetSizeParam, targetSizeParam);
+            yield return new WaitForSeconds(0.5f);
+            while (time < duration)
+            {
+                tempDefender.transform.position = Vector3.Lerp(tempDefender.transform.position, targetPos, time / duration);
+                tempDefenderScript.transform.localScale = Vector3.Lerp(tempDefenderScript.transform.localScale, targetSize, time / duration);
+                time += Time.deltaTime;
+                yield return null;
+            }
+        }
     }
 
     public void AskToFindOpponent(GameUnitController gameUnit, Enums.UnitType unitType)

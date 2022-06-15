@@ -18,6 +18,7 @@ public class GameUnitController : MonoBehaviour
 
     [SerializeField] private bool seachingForOpponent = false; //to do unserialize 
     private bool bouncing = false;
+    public bool start = false;
     public GameUnitController target;
     public Enums.UnitType myUnitType;
     public Enums.UnitState myState;
@@ -34,6 +35,7 @@ public class GameUnitController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!start) { return; }
         Move();
         UpdateState();
     }
