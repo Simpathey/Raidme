@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 using System;
 using System.IO;
 
@@ -38,10 +37,12 @@ public class Battler : MonoBehaviour
     [SerializeField] Sprite raiderSprite;
 
     bool battleOver;
+    bool checkingBattleState;
 
     private void Start()
     {
         battleOver = true;
+        checkingBattleState = false;
         LoadDefenderSprites();
         LoadRaiderSprites();
     }
@@ -127,11 +128,15 @@ public class Battler : MonoBehaviour
             //Adds to list for easy access 
             raidersList.Add(tempRaiderScript);
             float duration = 0.5f;
+            if (battleParams.raiderUserNames.Count > 30)
+            {
+                duration = (30f / battleParams.raiderUserNames.Count) / 2;
+            }
             float time = 0;
-            Vector3 targetPos = new Vector3(raiderPosition.position.x, UnityEngine.Random.Range(-5, 5), 0);
+            Vector3 targetPos = new Vector3(raiderPosition.position.x, UnityEngine.Random.Range(-4.5f, 4.5f), 0);
             float targetSizeParam = Mathf.Lerp(0.45f, 1, raiderPowerScaling);
             Vector3 targetSize = new Vector3(targetSizeParam, targetSizeParam, targetSizeParam);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(duration);
             while (time<duration)
             {
                 tempRaider.transform.position = Vector3.Lerp(tempRaider.transform.position, targetPos, time / duration);
@@ -161,10 +166,14 @@ public class Battler : MonoBehaviour
             defendersList.Add(tempDefenderScript);
             float time = 0;
             float duration = 0.5f;
-            Vector3 targetPos = new Vector3(defenderPosition.position.x, UnityEngine.Random.Range(-5, 5), 0);
+            if (participatingDefenders > 30)
+            {
+                duration = (30f/participatingDefenders)/2;   
+            }
+            Vector3 targetPos = new Vector3(defenderPosition.position.x, UnityEngine.Random.Range(-4.5f, 4.5f), 0);
             float targetSizeParam = Mathf.Lerp(0.45f, 1, defenderPowerScaling);
             Vector3 targetSize = new Vector3(targetSizeParam, targetSizeParam, targetSizeParam);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(duration);
             while (time < duration)
             {
                 tempDefender.transform.position = Vector3.Lerp(tempDefender.transform.position, targetPos, time / duration);
@@ -246,14 +255,22 @@ public class Battler : MonoBehaviour
 
     public void CheckIfBattleOver()
     {
+        if (checkingBattleState) { return; }
+        checkingBattleState = true;
+        StartCoroutine(BattleOverCoroutine());
+    }
+
+    IEnumerator BattleOverCoroutine()
+    {
         if (!battleOver)
         {
+            yield return new WaitForSeconds(0.1f);
             if (raidersList.Count == 0 && defendersList.Count == 0)
             {
                 //draw condition!
                 Debug.Log("draw");
                 StartCoroutine(DestroyAllUnits());
-                raidEndingScene.Draw(); 
+                raidEndingScene.Draw();
                 battleOver = true;
             }
             else if (raidersList.Count == 0 && defendersList.Count > 0)
@@ -273,6 +290,7 @@ public class Battler : MonoBehaviour
                 battleOver = true;
             }
         }
+        checkingBattleState = false;
     }
 
     public static Sprite LoadPNG(string filePath)
