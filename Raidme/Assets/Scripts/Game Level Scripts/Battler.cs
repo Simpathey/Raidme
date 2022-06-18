@@ -310,6 +310,7 @@ public class Battler : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.A)) // THIS IS FAKE I WILL DELETE LATER LOLO LOLO LOOL LOOOOOOOOOL CATJAM
         {
             BattleParams fakeRaid = new BattleParams();
@@ -318,6 +319,6 @@ public class Battler : MonoBehaviour
             fakeRaid.totalDefenderCount = 7;
             fakeRaid.totalRaiderCount = 9;
             StartBattle(fakeRaid);
-        }
+        }*/
     }
 }

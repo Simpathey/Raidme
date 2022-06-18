@@ -430,7 +430,7 @@ MonoBehaviour:
   _SortingOrder: 0
 --- !u!222 &42734667
 CanvasRenderer:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -2273,7 +2273,7 @@ MonoBehaviour:
   _SortingOrder: 0
 --- !u!222 &234033677
 CanvasRenderer:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4165,6 +4165,7 @@ MonoBehaviour:
   raiderCommand: {fileID: 1482908643}
   defenderCommand: {fileID: 2041215208}
   raiderNames: {fileID: 234033676}
+  communityName: {fileID: 1551292185}
   timer: {fileID: 829689982}
 --- !u!1 &477868887
 GameObject:
@@ -6209,7 +6210,7 @@ MonoBehaviour:
   _SortingOrder: 0
 --- !u!222 &748530842
 CanvasRenderer:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -7294,7 +7295,7 @@ MonoBehaviour:
   _SortingOrder: 0
 --- !u!222 &829689980
 CanvasRenderer:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -13672,7 +13673,7 @@ MonoBehaviour:
   _SortingOrder: 0
 --- !u!222 &1482908644
 CanvasRenderer:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -14360,7 +14361,7 @@ MonoBehaviour:
   _SortingOrder: 0
 --- !u!222 &1551292186
 CanvasRenderer:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -16253,7 +16254,7 @@ MonoBehaviour:
   _SortingOrder: 0
 --- !u!222 &1931236121
 CanvasRenderer:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -17546,7 +17547,7 @@ MonoBehaviour:
   _SortingOrder: 0
 --- !u!222 &2041215209
 CanvasRenderer:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

@@ -10,6 +10,7 @@ public class RaidStartingScene : MonoBehaviour
     public TextMeshPro raiderCommand;
     public TextMeshPro defenderCommand;
     public TextMeshPro raiderNames;
+    public TextMeshPro communityName;
     public Timer timer;
 
     void Start()
@@ -21,6 +22,7 @@ public class RaidStartingScene : MonoBehaviour
         raidMsg.text = playerPrefs.GetRaiderIncomingMsg();
         raiderCommand.text = "!" + playerPrefs.GetRaiderCommand();
         defenderCommand.text = "!" + playerPrefs.GetDefenderCommand();
+        communityName.text = playerPrefs.GetCommunityName();
     }
     
     public void SetRaiderName(string listOfRaiders)
