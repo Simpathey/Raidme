@@ -85,8 +85,10 @@ public class Battler : MonoBehaviour
         raiderPowerScaling = Mathf.Clamp(participatingRaiders / battleParams.totalRaiderCount, 0.1f, 1f);
 
         Debug.Log("defenders count " + participatingDefenders);
+        Debug.Log("total defenders count " + battleParams.totalDefenderCount);
         Debug.Log("defender power " + defenderPowerScaling);
         Debug.Log("raiders count " + participatingRaiders);
+        Debug.Log("total raiders count " + battleParams.totalRaiderCount);
         Debug.Log("raider power " + raiderPowerScaling);
 
         StartCoroutine(StartBattleSpawn(battleParams, participatingDefenders));
@@ -111,7 +113,7 @@ public class Battler : MonoBehaviour
     {
         for (int i = 0; i < battleParams.raiderUserNames.Count; i++)
         {
-            if (i > battleParams.totalRaiderCount - 1)
+            if (i > battleParams.totalRaiderCount - 1) //if more people typed raid then there are raiders the excess are debuffed
             {
                 raiderPowerScaling = 0.1f;
             }
@@ -152,6 +154,10 @@ public class Battler : MonoBehaviour
     {
         for (int i = 0; i < participatingDefenders; i++)
         {
+            if (i > battleParams.totalDefenderCount - 1) //if more people typed deffend then there are ppl in chat the excess are debuffed
+            {
+                defenderPowerScaling = 0.1f;
+            }
             //creates Defender Game Unit
             var tempDefender = Instantiate(gameUnitPrefab);
             tempDefender.transform.parent = DefendersParent.transform;
@@ -310,15 +316,15 @@ public class Battler : MonoBehaviour
 
     private void Update()
     {
-        /*
+        
         if (Input.GetKeyDown(KeyCode.A)) // THIS IS FAKE I WILL DELETE LATER LOLO LOLO LOOL LOOOOOOOOOL CATJAM
         {
             BattleParams fakeRaid = new BattleParams();
-            fakeRaid.defenderUserNames = new List<string> { "reallydecent", "jashmead", "tap_ghoul", "aietes__", "rossTB", "tr0ydf" };
-            fakeRaid.raiderUserNames = new List<string> { "RyanKHawkins", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67" };
-            fakeRaid.totalDefenderCount = 7;
-            fakeRaid.totalRaiderCount = 9;
+            fakeRaid.defenderUserNames = new List<string> { "reallydecent", "jashmead", "tap_ghoul", "aietes__", "rossTB", "tr0ydf", "jashmead", "tap_ghoul", "aietes__", "rossTB", "tr0ydf", "jashmead", "tap_ghoul", "aietes__", "rossTB", "tr0ydf", "jashmead", "tap_ghoul", "aietes__", "rossTB", "tr0ydf", "jashmead", "tap_ghoul", "aietes__", "rossTB", "tr0ydf", "jashmead", "tap_ghoul", "aietes__", "rossTB", "tr0ydf", "jashmead", "tap_ghoul", "aietes__", "rossTB", "tr0ydf", "jashmead", "tap_ghoul", "aietes__", "rossTB", "tr0ydf" };
+            fakeRaid.raiderUserNames = new List<string> { "RyanKHawkins", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67", "Leo_churrasquerio", "Moosedoesstuff", "getfisted", "cyberangel67" };
+            fakeRaid.totalDefenderCount = 50;
+            fakeRaid.totalRaiderCount = 120;
             StartBattle(fakeRaid);
-        }*/
+        }
     }
 }

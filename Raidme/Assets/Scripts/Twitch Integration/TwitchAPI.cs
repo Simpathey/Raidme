@@ -32,7 +32,6 @@ public class TwitchAPI : MonoBehaviour
         api = new Api();
         api.Settings.AccessToken = playerPrefs.GetBotAccessToken();
         api.Settings.ClientId = playerPrefs.GetClientID();
-        //api.Invoke(api.Settings.CheckCredentialsAsync(), APIFailCallback);
         StartCoroutine(CheckViewerCountCoroutine());
     }
 
@@ -57,7 +56,7 @@ public class TwitchAPI : MonoBehaviour
     {
         //ask api how many users are connected to chat
         //once it has an answer it will send the result to our callback method
-        if (twitchClient.client.JoinedChannels.Count>0) { Debug.Log("Abort api count due to null client channel"); return; }
+        if (twitchClient.client.JoinedChannels.Count==0) { Debug.Log("Abort api count due to null client channel"); return; }
         api.Invoke(api.Undocumented.GetChattersAsync
         (twitchClient.client.JoinedChannels[0].Channel), CountChattersListCallback);
     }
